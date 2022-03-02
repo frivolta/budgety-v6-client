@@ -4,6 +4,8 @@ import {Col, Row} from "antd";
 import CategoryCard from "./components/CategoryCard";
 import EmptyCategoryCard from "./components/EmptyCategoryCard";
 
+// @ToDo: Fix Ui Problems, categories card always on same line (ellipsis)
+
 const CategoryCards: FC<CategoryCardsProps> = ({categories, handleEditCategory}) => {
     const [hoverIndexQueue, setHoverIndexQueue] = useState<number[]>([])
 

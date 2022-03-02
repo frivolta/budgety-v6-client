@@ -4,6 +4,7 @@ export type CategoryTypesById = Record<CategoryType["id"], CategoryType>
 
 export interface Category_Expense{
     id:number;
+    category_type: "expense";
     category_name: string;
     category_slug:string;
     icon: string;
@@ -12,6 +13,7 @@ export interface Category_Expense{
 
 export interface Category_Income{
     id: number;
+    category_type: "income";
     category_name:string;
     category_slug:string;
     icon: string;
@@ -20,6 +22,7 @@ export interface Category_Income{
 
 export interface Category_Saving{
     id: number;
+    category_type: "saving";
     category_name: string;
     category_slug:string;
     icon: string;

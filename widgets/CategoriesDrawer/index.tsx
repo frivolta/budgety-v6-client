@@ -15,7 +15,7 @@ const CategoryDrawer: FC<CategoriesDrawer> = ({isDrawerOpen, closeDrawer, catego
         <Drawer
             title={drawerData ? "Edit Category" : "Create New Category"}
             placement="right"
-            size="large"
+            size="default"
             onClose={closeDrawer}
             visible={isDrawerOpen}
         >

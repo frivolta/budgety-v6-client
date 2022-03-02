@@ -7,6 +7,8 @@ import CategoryCards from "../widgets/CategoryCards";
 import {CategoryType} from "../data-structures/definitions/categories";
 import CategoryDrawer from "../widgets/CategoriesDrawer";
 import {useCategoriesDrawer} from "../widgets/CategoriesDrawer/hooks/useCategoriesDrawer";
+import {incomeCategories} from "../data-structures/data/income_categories/income_categories";
+import {savingCategories} from "../data-structures/data/saving_categories/saving_categories";
 
 const CategoriesPage: NextPage = () => {
     const {isDrawerOpen, currentCategory, selectAndOpenDrawer, closeDrawer} = useCategoriesDrawer();
@@ -21,8 +23,14 @@ const CategoriesPage: NextPage = () => {
                 <Typography.Title level={5}>Expenses</Typography.Title>
             </Row>
             <CategoryCards categories={expenseCategories} handleEditCategory={handleEditCategory}/>
-            {/*Incomes*/}
-            {/*Savings*/}
+            <Row>
+                <Typography.Title level={5}>Incomes</Typography.Title>
+            </Row>
+            <CategoryCards categories={incomeCategories} handleEditCategory={handleEditCategory}/>
+            <Row>
+                <Typography.Title level={5}>Savings</Typography.Title>
+            </Row>
+            <CategoryCards categories={savingCategories} handleEditCategory={handleEditCategory}/>
         </PageLayout>
     )
 }
