@@ -8,7 +8,7 @@ import {PageLayoutProps} from "./interface";
 
 const {Header, Content, Sider} = Layout;
 
-const PageLayout: NextPage<PageLayoutProps> = ({children, title, subtitle}) => {
+const PageLayout: NextPage<PageLayoutProps> = ({children, title, subtitle, noPaper}) => {
     const [collapsed, setCollapsed] = useState(false)
     const collapseSidebar = () => setCollapsed(prev => !prev);
     return (
@@ -25,11 +25,19 @@ const PageLayout: NextPage<PageLayoutProps> = ({children, title, subtitle}) => {
                         subTitle={subtitle ? subtitle : null}
                     />,
                 </Header>
-                <Content style={{margin: '32px 16px'}}>
-                    <div className="site-layout-background" style={{padding: 24}}>
-                        {children}
-                    </div>
-                </Content>
+                {noPaper
+                    ? <Content style={{margin: '32px 16px'}}>
+                        <div>
+                            {children}
+                        </div>
+                    </Content>
+                    :
+                    <Content style={{margin: '32px 16px'}}>
+                        <div className={"site-layout-background"} style={{padding: 24}}>
+                            {children}
+                        </div>
+                    </Content>
+                }
                 <Footer/>
             </Layout>
         </Layout>)

@@ -4,4 +4,5 @@ export interface PageLayoutProps{
     children: ReactNode;
     title: string;
     subtitle?: string;
+    noPaper?:boolean;
 }

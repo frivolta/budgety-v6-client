@@ -1,3 +1,5 @@
+import {Expense} from "./expense";
+
 export type CategoryType = Category_Expense | Category_Income | Category_Saving;
 
 export type CategoryTypesById = Record<CategoryType["id"], CategoryType>
