@@ -1,28 +1,59 @@
 import {FC} from "react";
 import {MonthlyBudgetProps} from "./interface";
 import {useMonthlyBudgetApi} from "./hooks/useMonthlyBudgetApi";
-import {Col, Row, Typography} from "antd";
 import {BudgetTable} from "./components/BudgetTable";
-import {expenseColumns} from "./components/BudgetTable/columns";
+import {budgetColumns, goalColumns} from "./components/BudgetTable/columns";
+import {LayoutRow} from "../../components/LayoutRow";
+import {Button, Col, Divider, Statistic} from "antd";
+import {StatisticCard} from "./components/StatisticCard";
 
 
 const MonthlyBudget: FC<MonthlyBudgetProps> = ({date}) => {
     const {budget} = useMonthlyBudgetApi({date})
     return (
-        <Row className="site-layout-background" style={{padding: 16, marginTop: 16, width: "100%"}}>
-            <Row style={{width: "100%"}}>
-                <Col span={24}>
-                    <Typography.Title level={5}>Expenses</Typography.Title>
-                    <Typography.Text type="secondary">How much will you spend this month for each
-                        category?</Typography.Text>
+        <>
+            <LayoutRow >
+                <Col span={8}>
+                    <StatisticCard min={0} max={100} value={30} totalTitle="Total expenses budget" relativeTitle="Expenses this month"/>
+                    <Divider type="vertical" />
+
                 </Col>
-            </Row>
-            <Row style={{width: "100%", marginTop: 24}}>
-                <Col span={24}>
-                    <BudgetTable budget={budget} budgetDataType="expenses" columns={expenseColumns}/>
+
+                <Col span={8}>
+                    <StatisticCard min={0} max={100} value={30} totalTitle="Total expenses budget" relativeTitle="Expenses this month"/>
                 </Col>
-            </Row>
-        </Row>
+                <Col span={8}>
+                    <StatisticCard min={0} max={100} value={30} totalTitle="Total expenses budget" relativeTitle="Expenses this month"/>
+                </Col>
+            </LayoutRow>
+            <LayoutRow>
+                <BudgetTable
+                    budget={budget}
+                    budgetDataType="expenses"
+                    columns={budgetColumns}
+                    title="Expenses"
+                    helper="How much will you spend this month for each category?"
+                />
+            </LayoutRow>
+            <LayoutRow>
+                <BudgetTable
+                    budget={budget}
+                    budgetDataType="savings"
+                    columns={goalColumns}
+                    title="Savings"
+                    helper="How much are you willing to save for each of your savings project?"
+                />
+            </LayoutRow>
+            <LayoutRow>
+                <BudgetTable
+                    budget={budget}
+                    budgetDataType="incomes"
+                    columns={goalColumns}
+                    title="Incomes"
+                    helper="What are your income expectations?"
+                />
+            </LayoutRow>
+        </>
     )
 }
 export default MonthlyBudget

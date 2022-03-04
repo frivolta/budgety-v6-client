@@ -1,13 +1,14 @@
 import {MonthlyBudget} from "../../../../data-structures/definitions/monthlyBudget";
-import {ExpenseColumn} from "./columns";
 
 export type BudgetDataType = "expenses" | "incomes" | "savings"
-export type Column = ExpenseColumn
+export type Column = MonthlyBudgetColumn
 
 export interface BudgetTableProps {
     budget: MonthlyBudget;
     budgetDataType: BudgetDataType;
-    columns: Column[]
+    columns: Column[];
+    title: string;
+    helper?: string;
 }
 
 export interface BudgetRecordDataType {
@@ -15,4 +16,13 @@ export interface BudgetRecordDataType {
     category: any,
     key: any,
     budget: number
+}
+
+export interface MonthlyBudgetColumn {
+    title: string;
+    dataIndex: string;
+    key: string | number;
+    width?: string;
+    editable?: boolean;
+    render?:any;
 }
