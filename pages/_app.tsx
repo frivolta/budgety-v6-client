@@ -1,11 +1,14 @@
 import {CategoriesDrawerProvider} from "../widgets/CategoriesDrawer/hooks/useCategoriesDrawer";
+import {TransactionDrawerProvider} from "../widgets/TransactionsDrawer/hooks/userTransactionsDrawer";
 
 require('../styles/global.less')
 
 function MyApp({Component, pageProps}) {
     return (
         <CategoriesDrawerProvider>
-            <Component {...pageProps} />
+            <TransactionDrawerProvider>
+                <Component {...pageProps} />
+            </TransactionDrawerProvider>
         </CategoriesDrawerProvider>);
 }
 
