@@ -4,13 +4,7 @@ import {Transaction} from "../../data-structures/definitions/transactions";
 import {incomes as apiIncomes} from "../../data-structures/data/incomes/incomes";
 import {savings as apiSavings} from "../../data-structures/data/savings/savings";
 import {compose, curry} from "ramda";
-import {filterByCategoryIds,  orderByDate} from "../../utils/helpers/transactions/filters";
-import {endOfMonth, isAfter, isBefore, startOfMonth} from "date-fns";
-import {convertToDate} from "../../utils/helpers/dates";
-
-export const getMonthlyTransactions = curry((date: Date, fakeApi: Transaction[]) => fakeApi.filter(expense =>
-    isAfter(convertToDate(expense.date), startOfMonth(date))
-    && isBefore(convertToDate(expense.date), endOfMonth(date))))
+import {filterByCategoryIds, getMonthlyTransactions, orderByDate} from "../../utils/helpers/transactions/filters";
 
 export const useTransactionEntries = (date: Date) => {
     const [transactions, setTransaction] = useState<Transaction[]>([])
@@ -25,6 +19,7 @@ export const useTransactionEntries = (date: Date) => {
     const applyFilterByCategoriesIds = useCallback((categoryIds: number[]) =>
             compose(setFilteredTransactions, filterByCategoryIds(filteredTransactions))(categoryIds),
         [transactions, filteredTransactions])
+
 
     useEffect(() => {
         if (date) {

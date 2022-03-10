@@ -4,6 +4,9 @@ import {curry, filter, ifElse, includes, isEmpty} from "ramda";
 import {compareDesc, endOfMonth, isAfter, isBefore, startOfMonth} from "date-fns";
 import {convertToDate} from "../../dates";
 
+export const getMonthlyTransactions = curry((date: Date, fakeApi: Transaction[]) => fakeApi.filter(expense =>
+    isAfter(convertToDate(expense.date), startOfMonth(date))
+    && isBefore(convertToDate(expense.date), endOfMonth(date))))
 
 
 export const filterByCategoryList = curry((transactions: Transaction[],categoryList: FilterByCategoryIds, ) =>

@@ -21,6 +21,5 @@ export interface TransactionRow{
 
 
 export interface TransactionsTableProps {
-    transactions: Transaction[]
 }
 

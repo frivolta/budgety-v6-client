@@ -4,9 +4,13 @@ import {useTransactionTableDatasource} from "./hooks/useTransactionTableDatasour
 import {Table} from "antd";
 import {transactionColumns} from "./columns";
 import {TransactionsTableProps} from "./interfaces";
+import {useTransactionEntries} from "../../hooks/useTransactionEntries";
+import {useMonthlyFilter} from "../TransactionsFilters/hooks/useTransactionsDate";
 
-export const TransactionsTable: FC<TransactionsTableProps> = ({transactions}) => {
-    const {datasource} = useTransactionTableDatasource(transactions)
+export const TransactionsTable: FC<TransactionsTableProps> = () => {
+    const {date} = useMonthlyFilter()
+    const {filteredTransactions} = useTransactionEntries(date)
+    const {datasource} = useTransactionTableDatasource(filteredTransactions)
 
     return (
         <LayoutRow>

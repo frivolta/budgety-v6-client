@@ -3,8 +3,10 @@ import {LeftCircleOutlined, RightCircleOutlined} from "@ant-design/icons";
 import {DEFAULT_COLOR} from "../../utils/constants/StyleConstants";
 import {FC} from "react";
 import {MonthSelectorProps} from "./interface";
+import {useMonthlyFilter} from "../../widgets/TransactionsFilters/hooks/useTransactionsDate";
 
-export const MonthSelector:FC<MonthSelectorProps> = ({previousMonth, formatMonth, nextMonth,date}) =>{
+export const MonthSelector:FC<MonthSelectorProps> = ({formatMonth}) =>{
+    const {date, previousMonth, nextMonth} = useMonthlyFilter()
     return (
         <Row className="site-layout-background" style={{padding: 8}}>
             <Col span={24}>
