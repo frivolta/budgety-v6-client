@@ -5,6 +5,7 @@ require('../styles/global.less')
 
 function MyApp({Component, pageProps}) {
     return (
+
         <CategoriesDrawerProvider>
             <TransactionDrawerProvider>
                 <Component {...pageProps} />
