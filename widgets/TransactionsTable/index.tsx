@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import {LayoutRow} from "../../components/LayoutRow";
 import {useTransactionTableDatasource} from "./hooks/useTransactionTableDatasource";
 import {Table} from "antd";
@@ -9,8 +9,10 @@ import {useMonthlyFilter} from "../TransactionsFilters/hooks/useTransactionsDate
 
 export const TransactionsTable: FC<TransactionsTableProps> = () => {
     const {date} = useMonthlyFilter()
-    const {filteredTransactions} = useTransactionEntries(date)
+    const {filteredTransactions, setDate} = useTransactionEntries()
     const {datasource} = useTransactionTableDatasource(filteredTransactions)
+    useEffect(()=>{setDate(date)},[date])
+    useEffect(()=>{console.log("transactions changed", filteredTransactions)},[filteredTransactions])
 
     return (
         <LayoutRow>

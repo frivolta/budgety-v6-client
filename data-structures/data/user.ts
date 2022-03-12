@@ -3,8 +3,8 @@ import {expenseCategories} from "./expense_categories/expense_categories";
 import {incomeCategories} from "./income_categories/income_categories";
 import {savingCategories} from "./saving_categories/saving_categories";
 import {expenses} from "./expenses/expenses";
-import {savings} from "./savings";
 import {monthlyBudget} from "./budget/monthlyBudget";
+import {savings} from "./savings/savings";
 
 export const User = {
     email: "user@email.com",

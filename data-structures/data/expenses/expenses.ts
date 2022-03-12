@@ -2,8 +2,8 @@ import {Expense} from "../../definitions/expense";
 import {expenseCategories} from "../expense_categories/expense_categories";
 import {TransactionType} from "../../definitions/transactions";
 
-export const expenses: Expense[] = new Array(50).fill(null).map(()=>({
-    id: 1,
+export const expenses: Expense[] = new Array(17).fill(null).map((_,i)=>({
+    id: i*3564,
     transactionType: TransactionType.expense,
     createdAt: "23/02/2022",
     updatedAt: "23/02/2022",

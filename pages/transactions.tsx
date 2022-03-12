@@ -6,9 +6,12 @@ import {TransactionsTable} from "../widgets/TransactionsTable";
 import {useTransactionsDrawer} from "../widgets/TransactionsDrawer/hooks/userTransactionsDrawer";
 import {TransactionsDrawer} from "../widgets/TransactionsDrawer";
 import {MonthlyFilterProvider} from "../widgets/TransactionsFilters/hooks/useTransactionsDate";
+import {useCategoryEntries} from "../hooks/useCategoryEntries";
+import {CategoriesFilter} from "../widgets/CategoriesFilter";
+import {TransactionEntriesProvider} from "../hooks/useTransactionEntries";
 
 const TransactionsPage: NextPage = () => {
-    //const {categories} = useCategoryEntries()
+    const {categories} = useCategoryEntries()
     const {isDrawerOpen, currentTransaction, selectAndOpenDrawer, closeDrawer} = useTransactionsDrawer()
 
     //Filters
@@ -20,13 +23,15 @@ const TransactionsPage: NextPage = () => {
 
     return (
         <MonthlyFilterProvider>
+            <TransactionEntriesProvider>
             <TransactionsDrawer closeDrawer={closeDrawer} transaction={currentTransaction}
                                 isDrawerOpen={isDrawerOpen}/>
             <PageLayout title="Transactions" subtitle="Manage your entries" noPaper>
                 <MonthSelector formatMonth={formatMonth}/>
-                {/*<CategoriesFilter categories={expenseCategories}/>*/}
+                <CategoriesFilter categories={categories}/>
                 <TransactionsTable/>
             </PageLayout>
+            </TransactionEntriesProvider>
         </MonthlyFilterProvider>
     )
 }
