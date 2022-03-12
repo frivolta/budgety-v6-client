@@ -46,7 +46,7 @@ const TransactionEntriesProvider = ({children}: ProviderProps) => {
         const filteredTransactions = compose(getTransactionsByIds(transactions), getFilteredTransactionsIds)(updatedFilters)
         setFilters(updatedFilters)
         setFilteredTransactions(filteredTransactions)
-    }, [setFilters, setFilteredTransactions])
+    }, [setFilters, setFilteredTransactions, applyTransactionsToCategoryFilter])
 
     // Init state
     const initTransactionsAndFilter = useCallback((date) => {

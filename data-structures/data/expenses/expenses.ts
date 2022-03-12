@@ -9,6 +9,6 @@ export const expenses: Expense[] = new Array(17).fill(null).map((_,i)=>({
     updatedAt: "23/02/2022",
     date: `${Math.floor(Math.random()*30).toString()}/${Math.floor(Math.random()*4).toString()}/2022`,
     category: expenseCategories[1],
-    amount: 50,
+    amount: Math.floor(Math.random() * 1345),
     description: "Gas fuel"
 }))

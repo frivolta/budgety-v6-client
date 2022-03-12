@@ -34,9 +34,6 @@ export const applyTransactionsToAllFilters = curry((prevFilters: TransactionFilt
 export const applyTransactionsToFilter = curry((filterType: TransactionFilterTypes, filters: TransactionFilters, ids: number[]) =>
     ({...filters, [filterType]: [...ids]}))
 
-export const applyFiltersToTransactions = (filters: TransactionFilters, transactions: Transaction[]) =>
-    compose(getTransactionsByIds(transactions), getFilteredTransactionsIds)(filters)
-
 /*Helpers*/
 
 // Get ids from a transaction list

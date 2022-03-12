@@ -8,6 +8,7 @@ export interface TranasctionColumn {
     width?: string;
     editable?: boolean;
     render?:any;
+    sorter?: any;
 }
 
 export interface TransactionRow{
