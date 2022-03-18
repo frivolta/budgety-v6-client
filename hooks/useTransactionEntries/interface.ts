@@ -2,17 +2,18 @@ import {Transaction} from "../../data-structures/definitions/transactions";
 import {Dispatch, ReactChild, SetStateAction} from "react";
 
 export enum TransactionFilterTypes {
-    CATEGORY= "CATEGORY",
+    CATEGORY = "CATEGORY",
     DATE = "DATE"
 }
 
-export type TransactionFilters = Record<TransactionFilterTypes,  number[] | null>
+export type TransactionFilters = Record<TransactionFilterTypes, number[] | null>
 
 // Context
-export interface State{
+export interface State {
     filteredTransactions: Transaction[];
-    resetFilters: ()=>void;
-    applyFilterByCategoriesIds: (categoryIds: number[])=>void;
+    transactions: Transaction[];
+    resetFilters: () => void;
+    applyFilterByCategoriesIds: (categoryIds: number[]) => void;
     setDate: Dispatch<SetStateAction<Date>>;
 }
 

@@ -1,7 +1,5 @@
 import {Transaction} from "../../data-structures/definitions/transactions";
-import {Category_Expense} from "../../data-structures/definitions/categories";
-
-export interface TranasctionColumn {
+export interface TransactionColumn {
     title: string;
     dataIndex: string;
     key: string | number;
@@ -20,7 +18,10 @@ export interface TransactionRow{
     date: string;
 }
 
-
 export interface TransactionsTableProps {
 }
+
+
+import {Category_Expense} from "../../data-structures/definitions/categories";
+
 

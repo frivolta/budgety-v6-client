@@ -1,10 +1,12 @@
-import {TranasctionColumn} from "./interfaces";
+import {TransactionColumn} from "./interfaces";
 import {CategoryType} from "../../data-structures/definitions/categories";
 import iconComponentFactory from "../../components/Factories/iconComponentFactory";
 import {compareDesc} from "date-fns";
 import {convertToDate} from "../../utils/helpers/dates";
+import {EditOutlined} from "@ant-design/icons";
+import {ActionsCell} from "./components/ActionsCell";
 
-export const transactionColumns: TranasctionColumn[] = [
+export const createTransactionColumns: TransactionColumn[] = [
     {
         title: "Category", dataIndex: "category", key: "category", width: '30%', render: (cat: CategoryType) => {
             return <strong>{iconComponentFactory(cat.icon, {
@@ -19,8 +21,18 @@ export const transactionColumns: TranasctionColumn[] = [
             })}{cat.category_name}</strong>
         }, editable: true
     },
-    {title: "Date", dataIndex: "date", key: "date", editable: true, sorter: (a,b)=>compareDesc(convertToDate(a.date), convertToDate(b.date))},
+    {
+        title: "Date",
+        dataIndex: "date",
+        key: "date",
+        editable: true,
+        sorter: (a, b) => compareDesc(convertToDate(a.date), convertToDate(b.date))
+    },
     {title: "Description", dataIndex: "description", key: "description", editable: true},
     {title: "Amount", dataIndex: "amount", key: "amount", editable: true, sorter: (a, b) => a.amount - b.amount},
-    {title: "Actions", dataIndex: "actions", key: "actions"},
+    {
+        title: "Actions", dataIndex: "actions", key: "actions", render: (action) => {
+            return <ActionsCell editAction={action.editAction} deleteAction={action.deleteAction}/>
+        }
+    },
 ]

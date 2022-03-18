@@ -2,7 +2,7 @@ import {MonthlyBudget} from "../../definitions/monthlyBudget";
 import {expenseCategories} from "../expense_categories/expense_categories";
 import {savingCategories} from "../saving_categories/saving_categories";
 import {expenses} from "../expenses/expenses";
-import {savings} from "../savings";
+import {savings} from "../savings/savings";
 import {incomeCategories} from "../income_categories/income_categories";
 
 export const monthlyBudget: MonthlyBudget = {
@@ -134,35 +134,35 @@ export const monthlyBudget: MonthlyBudget = {
     savingCategories: [
         {
             id: 1,
-            category: savingCategories[1],
+            category: savingCategories[22],
             goal: 50,
             currentAmount: 0,
             items: [savings[0]]
         },
         {
             id: 2,
-            category: savingCategories[2],
+            category: savingCategories[23],
             goal: 50,
             currentAmount: 0,
             items: [savings[0]]
         },
         {
             id: 3,
-            category: savingCategories[3],
+            category: savingCategories[24],
             goal: 50,
             currentAmount: 0,
             items: [savings[0]]
         },
         {
             id: 4,
-            category: savingCategories[4],
+            category: savingCategories[25],
             goal: 50,
             currentAmount: 0,
             items: [savings[0]]
         },
         {
             id: 5,
-            category: savingCategories[5],
+            category: savingCategories[26],
             goal: 50,
             currentAmount: 0,
             items: [savings[0]]
@@ -171,28 +171,28 @@ export const monthlyBudget: MonthlyBudget = {
     incomeCategories: [
         {
             id: 1,
-            category: incomeCategories[1],
+            category: incomeCategories[18],
             goal: 50,
             currentAmount: 0,
             items: []
         },
         {
             id: 2,
-            category: incomeCategories[2],
+            category: incomeCategories[19],
             goal: 50,
             currentAmount: 0,
             items: []
         },
         {
             id: 3,
-            category: incomeCategories[3],
+            category: incomeCategories[20],
             goal: 50,
             currentAmount: 0,
             items: []
         },
         {
             id: 4,
-            category: incomeCategories[4],
+            category: incomeCategories[21],
             goal: 50,
             currentAmount: 0,
             items: []

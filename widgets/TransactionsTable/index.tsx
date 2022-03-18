@@ -1,22 +1,26 @@
 import React, {FC, useEffect} from "react";
 import {LayoutRow} from "../../components/LayoutRow";
 import {useTransactionTableDatasource} from "./hooks/useTransactionTableDatasource";
-import {Table} from "antd";
-import {transactionColumns} from "./columns";
+import {Col, Divider, Table} from "antd";
+import {createTransactionColumns} from "./columns";
 import {TransactionsTableProps} from "./interfaces";
 import {useTransactionEntries} from "../../hooks/useTransactionEntries";
 import {useMonthlyFilter} from "../TransactionsFilters/hooks/useTransactionsDate";
+import {useTransactionsDrawer} from "../TransactionsDrawer/hooks/userTransactionsDrawer";
+import {DeleteAction} from "./components/ActionsCell/interface";
+import {StatisticCard} from "../TransactionsStatistics/components/StatisticCard";
 
 export const TransactionsTable: FC<TransactionsTableProps> = () => {
     const {date} = useMonthlyFilter()
     const {filteredTransactions, setDate} = useTransactionEntries()
-    const {datasource} = useTransactionTableDatasource(filteredTransactions)
+    const {selectAndOpenDrawer} = useTransactionsDrawer()
+    const deleteAction:DeleteAction = (t) => {console.log("Deleting: ", t)}
+    const {datasource} = useTransactionTableDatasource(filteredTransactions, selectAndOpenDrawer, deleteAction)
     useEffect(()=>{setDate(date)},[date])
-    useEffect(()=>{console.log("transactions changed", filteredTransactions)},[filteredTransactions])
 
     return (
         <LayoutRow>
-            <Table dataSource={datasource} columns={transactionColumns} style={{width: "100%"}} pagination={false}/>
+            <Table dataSource={datasource} columns={createTransactionColumns} style={{width: "100%"}} pagination={false}/>
         </LayoutRow>
     )
 }

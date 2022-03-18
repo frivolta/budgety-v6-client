@@ -9,7 +9,7 @@ export interface TransactionFormProps{
 export interface TransactionFormFields{
     id: number | null;
     transactionType: TransactionType | null;
-    category: CategoryType | null;
+    category: number | null;
     amount: number;
     description: string;
     date: Date | string | Moment | null;

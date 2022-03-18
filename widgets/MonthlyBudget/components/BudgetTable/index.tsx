@@ -16,6 +16,7 @@ const components = {
 export const BudgetTable: FC<BudgetTableProps> = ({budget, budgetDataType, columns, title, helper}) => {
     const {datasource} = useBudgetTable({budget, budgetDataType})
     const {columns: mappedColumns} = useBudgetTableColumns(columns)
+    console.log(datasource)
     return (
         <>
         <Row style={{width: "100%", marginTop: 24}}>

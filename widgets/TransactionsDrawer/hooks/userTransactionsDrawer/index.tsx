@@ -24,7 +24,7 @@ const TransactionsDrawerContext = createContext<State>(initialState);
 
 
 const TransactionDrawerProvider = ({children}: ProviderProps)=>{
-    const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(true)
+    const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false)
     const [currentTransaction, setCurrentTransaction] = useState<Transaction | null>(null)
 
     // close drawer and reset category

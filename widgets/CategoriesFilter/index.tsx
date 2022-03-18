@@ -25,21 +25,12 @@ export const CategoriesFilter: FC<CategoriesFilterProps> = ({categories}) => {
         applyFilterByCategoriesIds(value)
     }
     return (
-        <Row className="site-layout-background" style={{padding: 8, marginTop: 16}}>
-            <Col span={12}>
-                <Typography.Text>Show Categories</Typography.Text>
+        <Row className="site-layout-background" style={{padding: 16, marginTop: 16}}>
+            <Col span={24}>
+                <Typography.Text strong style={{marginRight: 8}}>Show Categories: </Typography.Text>
                 <Select style={{width: 300}} mode={"multiple"} onChange={onCategoryFilterChange}>
                     {getCategoriesValues(categories).map(c => <Select.Option value={c.value}
                                                                              key={c.value}>{c.label}</Select.Option>)}
-                </Select>
-            </Col>
-            <Col span={12}>
-                <Typography.Text>Show Categories</Typography.Text>
-                <Select style={{width: 300}} mode={"multiple"} onChange={() => {
-                }}>
-                    {getCategoryTypesValues([TransactionType.expense, TransactionType.income, TransactionType.saving])
-                        .map(c =>
-                            <Select.Option value={c.value} key={c.value}>{c.label}</Select.Option>)}
                 </Select>
             </Col>
         </Row>

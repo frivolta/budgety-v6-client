@@ -1,5 +1,5 @@
 import {Transaction} from "../../data-structures/definitions/transactions";
-import {FC, useEffect, useState} from "react";
+import {FC, useEffect, useMemo, useState} from "react";
 import {TransactionFormFields, TransactionFormProps} from "./interface";
 import {useTransactionsDrawer} from "../TransactionsDrawer/hooks/userTransactionsDrawer";
 import {Controller, useForm} from "react-hook-form";
@@ -10,7 +10,7 @@ import {convertToFormDate} from "../../utils/helpers/dates";
 const getValues = (values: Transaction | null): TransactionFormFields => ({
     id: values?.id ?? null,
     transactionType: values?.transactionType ?? transactionTypeOptions[0].value,
-    category: values?.category ?? null,
+    category: values?.category?.id ?? null,
     amount: values?.amount ?? 0,
     description: values?.description ?? "",
     date: values?.date ? convertToFormDate(values.date):null
@@ -59,6 +59,9 @@ const TransactionForm: FC<TransactionFormProps> = ({transaction}) => {
         console.log(data);
         closeDrawer()
     }
+    const transactionIsPresent:boolean = useMemo(()=>!!transaction, [JSON.stringify(transaction)])
+
+
     return (
         <Row gutter={16}>
             <Col span={24}>
@@ -74,7 +77,9 @@ const TransactionForm: FC<TransactionFormProps> = ({transaction}) => {
                                 >
                                     <Select onSelect={onTransactionTypeSelect} defaultValue={transactionTypeOptions[0]}
                                             onChange={field.onChange}
-                                            value={field.value}>
+                                            value={field.value}
+                                            disabled={transactionIsPresent}
+                                    >
                                         {transactionTypeOptions.map(option => (
                                             <Select.Option value={option.value}
                                                            key={option.value}>{option.label}</Select.Option>
@@ -90,9 +95,10 @@ const TransactionForm: FC<TransactionFormProps> = ({transaction}) => {
                                 <Form.Item
                                     label="Category: "
                                     validateStatus={!!errors?.category ? "error" : ""}
-                                    help={!!errors.category ? errors.category.category_name.message : ""}
+                                    help={!!errors.category ? errors.category.message : ""}
                                 >
                                     <Select disabled={!getFormValues("transactionType")} onChange={field.onChange}
+
                                             value={field.value}>
                                         {getSelectCategoriesValues(getFormValues("transactionType")).map(option => (
                                             <Select.Option value={option.value}

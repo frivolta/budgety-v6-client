@@ -17,6 +17,7 @@ import {ProviderProps, State, TransactionFilters, TransactionFilterTypes} from "
 
 const initialState: State = {
     filteredTransactions: [],
+    transactions: [],
     applyFilterByCategoriesIds: () => console.warn("not in hook"),
     resetFilters: () => console.warn("not in hook"),
     setDate: () => console.warn("not in hook"),
@@ -52,7 +53,10 @@ const TransactionEntriesProvider = ({children}: ProviderProps) => {
     const initTransactionsAndFilter = useCallback((date) => {
         const orederedMonthlyTransactions = orderByDate(getMonthlyTransactions(date, fakeApi))
         const transactionsIds = getTransactionIds(orederedMonthlyTransactions)
-        setFilters({ [TransactionFilterTypes.CATEGORY]: [...transactionsIds], [TransactionFilterTypes.DATE]:[...transactionsIds]})
+        setFilters({
+            [TransactionFilterTypes.CATEGORY]: [...transactionsIds],
+            [TransactionFilterTypes.DATE]: [...transactionsIds]
+        })
         setTransactions(orederedMonthlyTransactions)
         setFilteredTransactions(orederedMonthlyTransactions)
     }, [date])
@@ -68,7 +72,7 @@ const TransactionEntriesProvider = ({children}: ProviderProps) => {
 
     return (
         <TransactionEntriesContext.Provider
-            value={{applyFilterByCategoriesIds, resetFilters, filteredTransactions, setDate}}>
+            value={{applyFilterByCategoriesIds, resetFilters, transactions, filteredTransactions, setDate}}>
             {children}
         </TransactionEntriesContext.Provider>)
 }
