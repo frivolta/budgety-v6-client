@@ -5,21 +5,27 @@ import {formatMonth} from "../utils/helpers/dates";
 import {useAllTransactions} from "../hooks/useAllTransactions";
 import {Col, Row} from "antd";
 import {AmountDisplay} from "../components/AmountDisplay";
+import {TransactionEntriesProvider} from "../hooks/useTransactionEntries";
+import {DashboardData} from "../widgets/DashboardData";
 
 const IndexPage = () => {
     const {total, apiState} = useAllTransactions()
-    return (<MonthlyFilterProvider>
-            <PageLayout title="Dashboard" subtitle="Review your reports" noPaper>
-                <Row className="site-layout-background" style={{padding: 16, marginBottom: 16}}>
-                    <Col>
-                        <AmountDisplay
-                            text="Account balance:"
-                            amount={total}
-                            tooltip="All your incomes and savings minus all your expenses"/>
-                    </Col>
-                </Row>
-                <MonthSelector formatMonth={formatMonth}/>
-            </PageLayout>
+    return (
+        <MonthlyFilterProvider>
+            <TransactionEntriesProvider>
+                <PageLayout title="Dashboard" subtitle="Review your reports" noPaper>
+                    <Row className="site-layout-background" style={{padding: 16, marginBottom: 16}}>
+                        <Col>
+                            <AmountDisplay
+                                text="Account balance:"
+                                amount={total}
+                                tooltip="All your incomes and savings minus all your expenses"/>
+                        </Col>
+                    </Row>
+                    <MonthSelector formatMonth={formatMonth}/>
+                    <DashboardData/>
+                </PageLayout>
+            </TransactionEntriesProvider>
         </MonthlyFilterProvider>
     )
 };
