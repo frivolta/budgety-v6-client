@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Datasource, UseBudgetTable} from "./interface";
+import {UseBudgetTable} from "./interface";
 import {compose} from "ramda";
 import {Category_WithBudget, Category_WithGoal} from "../../../../../../data-structures/definitions/categories";
 
@@ -18,7 +18,7 @@ const buildBudgetToRow = (cat: any) => cat.budget
     ? compose(withBudgetRow, withDefaultValues)(cat)
     : compose(withSavingRow, withDefaultValues)(cat)
 
-const withDefaultValues = (cat: Category_WithBudget<any, any>|Category_WithGoal<any, any>) => ({
+const withDefaultValues: any = (cat: Category_WithBudget<any, any> | Category_WithGoal<any, any>) => ({
     ...cat,
     key: cat.id,
     category: cat.category,
@@ -37,7 +37,7 @@ const withSavingRow = (cat: Category_WithGoal<any, any>) => ({
 })
 
 export const useBudgetTable = ({budget, budgetDataType}: UseBudgetTable) => {
-    const [datasource, setDatasource] = useState<null | Datasource>(null)
+    const [datasource, setDatasource] = useState<any>(null)
     useEffect(() => {
         if (budget && budgetDataType) {
             const entriesToMap = budget[dataTypeToKey()[budgetDataType]]

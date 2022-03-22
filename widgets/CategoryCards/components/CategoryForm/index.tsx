@@ -86,25 +86,25 @@ const CategoryForm: FC<CategoryFormProps> = ({category}) => {
                     />
                     {/*Select category type*/}
                     {!getFormValues("id") &&
-                    <Controller
-                        control={control}
-                        name="category_type"
-                        render={({field}) => <Form.Item
-                            label="Category type: "
-                            validateStatus={!!errors?.category_type ? "error" : ""}
-                            help={!!errors.category_type ? errors.category_type.message : ""}
-                        >
-                            <Select value={field.value} onChange={field.onChange}>
-                                <Select.Option value="expense">Expense</Select.Option>
-                                <Select.Option value="income">Income</Select.Option>
-                                <Select.Option value="saving">
-                                    Saving
-                                </Select.Option>
-                            </Select>
-                        </Form.Item>
-                        }
+                        <Controller
+                            control={control}
+                            name="category_type"
+                            render={({field}) => <Form.Item
+                                label="Category type: "
+                                validateStatus={!!errors?.category_type ? "error" : ""}
+                                help={!!errors.category_type ? errors.category_type.message : ""}
+                            >
+                                <Select value={field.value} onChange={field.onChange}>
+                                    <Select.Option value="expense">Expense</Select.Option>
+                                    <Select.Option value="income">Income</Select.Option>
+                                    <Select.Option value="saving">
+                                        Saving
+                                    </Select.Option>
+                                </Select>
+                            </Form.Item>
+                            }
 
-                    />}
+                        />}
                     {/* Image selector */}
                     <Row>
                         <Form.Item>
@@ -118,7 +118,7 @@ const CategoryForm: FC<CategoryFormProps> = ({category}) => {
                                         help={!!errors.category_name ? errors.category_name.message : ""}
 
                                     >
-                                        <SelectCategory value={field.value} onChange={field.onChange}
+                                        <SelectCategory value={parseInt(field.value)} onChange={field.onChange}
                                                         background={uiColor}/>
                                     </Form.Item>
                                 }

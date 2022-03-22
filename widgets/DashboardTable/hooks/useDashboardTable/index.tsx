@@ -17,7 +17,7 @@ const buildBudgetToRow = (cat: any) => cat.budget
     ? compose(withBudgetRow, withDefaultValues)(cat)
     : compose(withSavingRow, withDefaultValues)(cat)
 
-const withDefaultValues = (cat: Category_WithBudget<any, any> | Category_WithGoal<any, any>) => ({
+const withDefaultValues: any = (cat: Category_WithBudget<any, any> | Category_WithGoal<any, any>) => ({
     ...cat,
     key: cat.id,
     category: cat.category,

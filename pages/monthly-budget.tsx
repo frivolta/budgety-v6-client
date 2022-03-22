@@ -15,10 +15,8 @@ const BudgetPage = () => {
 
     return (
         <PageLayout title="Monthly Budget" subtitle="Setup your budget" noPaper>
-            <MonthSelector date={date} previousMonth={previousMonth} nextMonth={nextMonth}
-                           formatMonth={formatMonth}/>
-
-        <MonthlyBudget date={date}/>
+            <MonthSelector formatMonth={formatMonth}/>
+            <MonthlyBudget date={date}/>
         </PageLayout>
     )
 }
