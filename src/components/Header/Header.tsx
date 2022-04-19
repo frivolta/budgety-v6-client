@@ -1,32 +1,35 @@
-import React, {useState} from 'react'
-import {DefaultButton, IContextualMenuProps, IIconProps, Image, IStackTokens,} from '@fluentui/react'
+import React, { useState } from 'react'
+import {
+    ActionButton,
+    DefaultButton,
+    IContextualMenuProps,
+    IIconProps,
+    Image,
+} from '@fluentui/react'
 
-import {CommandButton} from '@fluentui/react/lib/Button'
 import styles from './Header.module.scss'
-import {HeaderProps} from './interfaces'
+import { HeaderProps } from './interfaces'
 import LogoPng from '../../assets/images/logo/logo.png'
 
 const addFriendIcon: IIconProps = { iconName: 'AddFriend' }
+const accountIcon: IIconProps = { iconName: 'ReminderPerson' }
 
-const Header: React.FC<HeaderProps> = ({ isLoggedIn }) => {
-    const [checked, setChecked] = useState(true)
-    const stackTokens: IStackTokens = { childrenGap: 40 }
-    const addIcon: IIconProps = { iconName: 'Add' }
+const Header: React.FC<HeaderProps> = ({
+    isLoggedIn,
+    accounEmail,
+    logoutAction,
+    loginAction,
+    disabled,
+}) => {
     const menuProps: IContextualMenuProps = {
         items: [
             {
-                key: 'emailMessage',
-                text: 'Email message',
-                iconProps: { iconName: 'Mail' },
-            },
-            {
-                key: 'calendarEvent',
-                text: 'Calendar event',
-                iconProps: { iconName: 'Calendar' },
+                key: 'logout',
+                text: 'Logout',
+                iconProps: { iconName: 'SignOut' },
+                onClick: logoutAction,
             },
         ],
-        // By default, the menu will be focused when it opens. Uncomment the next line to prevent this.
-        // shouldFocusOnMount: false
     }
     return (
         <div className={styles.container}>
@@ -35,22 +38,22 @@ const Header: React.FC<HeaderProps> = ({ isLoggedIn }) => {
             </div>
             <div className={styles.loginButtons}>
                 {!isLoggedIn && (
-                    <DefaultButton iconProps={addFriendIcon} allowDisabledFocus>
+                    <DefaultButton
+                        iconProps={addFriendIcon}
+                        allowDisabledFocus
+                        onClick={loginAction}
+                        disabled={disabled}
+                    >
                         Sign in
                     </DefaultButton>
                 )}
-                {isLoggedIn && (
-                    <CommandButton
-                        uniqueId={13432}
-                        renderPersistedMenuHiddenOnMount={false}
-                        ariaHidden={false}
-                        iconProps={addIcon}
-                        text="New item"
-                        open
-                        toggled
+                {isLoggedIn && accounEmail && (
+                    <ActionButton
+                        iconProps={accountIcon}
+                        split
+                        text={accounEmail}
                         menuProps={menuProps}
-                        disabled={false}
-                        checked={checked}
+                        disabled={disabled}
                     />
                 )}
             </div>

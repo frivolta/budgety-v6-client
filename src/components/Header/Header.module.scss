@@ -7,7 +7,6 @@
   @include flex();
   @include align-items(center);
   display: flex;
-  background-color: red;
   @include justify-content(space-between);
 }
 
