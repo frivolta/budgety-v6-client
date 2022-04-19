@@ -1,0 +1,16 @@
+@import "./src/styling/scss/grid";
+@import "./src/styling/scss/flex";
+@import "sass-spacing/mixins.scss";
+@import "sass-breakpoints/mixins.scss";
+
+.container {
+  @include flex();
+  @include align-items(center);
+  display: flex;
+  background-color: red;
+  @include justify-content(space-between);
+}
+
+.login-buttons {
+  @include flex();
+}

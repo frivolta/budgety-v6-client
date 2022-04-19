@@ -1,0 +1,10 @@
+@import "../../styling/scss/grid";
+@import "../../styling/scss/flex";
+@import "../../../node_modules/sass-spacing/mixins";
+@import "../../../node_modules/sass-breakpoints/mixins";
+
+.container {
+  @include flex();
+  @include flex-direction();
+  @include p(2);
+}
