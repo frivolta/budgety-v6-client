@@ -5,11 +5,9 @@ export const routes = {
     dashboard: {
         name: 'Dashboard',
         path: '/dashboard',
-        component: Dashboard,
     },
     unprotected: {
         name: 'Unprotected',
         path: '/login',
-        component: Unprotected,
     },
 }

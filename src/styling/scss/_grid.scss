@@ -9,7 +9,6 @@ $columns: 12;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   margin: auto px-to-rem(8);
-
   // > 1366 pixel
   column-gap: px-to-rem(32);
   //row-gap: px-to-rem(32);

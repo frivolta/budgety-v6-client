@@ -1,5 +1,6 @@
-@import "../../styling/scss/grid";
-@import "../../styling/scss/flex";
+@import "src/styling/scss/space";
+@import "src/styling/scss/grid";
+@import "src/styling/scss/flex";
 @import "../../../node_modules/sass-spacing/mixins";
 @import "../../../node_modules/sass-breakpoints/mixins";
 @import "src/styling/scss/vars";
@@ -12,7 +13,6 @@
 
 .content{
   @include p(4);
-  @include pt(5);
   background-color: $background-secondary;
 }
 

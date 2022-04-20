@@ -1,17 +1,23 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
-import { MessageBar, MessageBarType, ProgressIndicator } from '@fluentui/react'
+import {
+    Text,
+    MessageBar,
+    MessageBarType,
+    ProgressIndicator,
+} from '@fluentui/react'
+import classNames from 'classnames'
 import { Header } from '../../components/Header'
 import { FullLayoutProps } from './interface'
 import styles from './FullLayout.module.scss'
 import { Navigation } from '../../components/Navigation'
 
-export const FullLayout: React.FC<FullLayoutProps> = ({ children }) => {
+export const FullLayout: React.FC<FullLayoutProps> = ({ children, title }) => {
     const { user, isLoading, loginWithPopup, logout, isAuthenticated } =
         useAuth0()
 
     return (
-        <div className={styles.flGrid}>
+        <div className={classNames(styles.flGrid)}>
             <div className={styles.flSpan12}>
                 <div className={styles.container}>
                     <Header
@@ -28,12 +34,19 @@ export const FullLayout: React.FC<FullLayoutProps> = ({ children }) => {
                     </MessageBar>
                 </div>
             </div>
-            <div className={styles.flSpan2}>
+            <div className={classNames(styles.flSpan2, styles.mtmd)}>
                 <Navigation />
             </div>
             <div className={`${styles.flSpan10} ${styles.content}`}>
                 {isLoading && <ProgressIndicator />}
-                {!isLoading && <div>{children}</div>}
+                <div className={styles.flGrid}>
+                    <div className={`${styles.flSpan12} ${styles.mblg} `}>
+                        <Text variant="xxLarge">{title}</Text>
+                    </div>
+                    <div className={styles.flSpan12}>
+                        {!isLoading && <div>{children}</div>}
+                    </div>
+                </div>
             </div>
         </div>
     )
