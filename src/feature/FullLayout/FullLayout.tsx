@@ -1,12 +1,13 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
-import { ProgressIndicator } from '@fluentui/react'
+import { MessageBar, MessageBarType, ProgressIndicator } from '@fluentui/react'
 import { Header } from '../../components/Header'
 import { FullLayoutProps } from './interface'
 import styles from './FullLayout.module.scss'
+import { Navigation } from '../../components/Navigation'
 
 export const FullLayout: React.FC<FullLayoutProps> = ({ children }) => {
-    const { user, isLoading, loginWithRedirect, logout, isAuthenticated } =
+    const { user, isLoading, loginWithPopup, logout, isAuthenticated } =
         useAuth0()
 
     return (
@@ -17,13 +18,23 @@ export const FullLayout: React.FC<FullLayoutProps> = ({ children }) => {
                         isLoggedIn={isAuthenticated}
                         accounEmail={user?.email}
                         disabled={isLoading}
-                        loginAction={loginWithRedirect}
+                        loginAction={loginWithPopup}
                         logoutAction={logout}
                     />
                 </div>
+                <div className={styles.messageBar}>
+                    <MessageBar messageBarType={MessageBarType.info}>
+                        Welcome to budgety, setup your account
+                    </MessageBar>
+                </div>
             </div>
-            {isLoading && <ProgressIndicator />}
-            {!isLoading && <div className={styles.flSpan12}>{children}</div>}
+            <div className={styles.flSpan2}>
+                <Navigation />
+            </div>
+            <div className={`${styles.flSpan10} ${styles.content}`}>
+                {isLoading && <ProgressIndicator />}
+                {!isLoading && <div>{children}</div>}
+            </div>
         </div>
     )
 }

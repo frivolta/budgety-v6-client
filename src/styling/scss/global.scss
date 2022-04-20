@@ -1,2 +1,9 @@
 @import "grid";
 @import "flex";
+@import "vars";
+@import "sass-spacing/mixins.scss";
+
+body, #root{
+  @include m(0);
+  min-height: 100vh;
+}

@@ -2,9 +2,24 @@
 @import "../../styling/scss/flex";
 @import "../../../node_modules/sass-spacing/mixins";
 @import "../../../node_modules/sass-breakpoints/mixins";
+@import "src/styling/scss/vars";
 
 .container {
   @include flex();
   @include flex-direction();
   @include p(2);
+}
+
+.content{
+  @include p(4);
+  @include pt(5);
+  background-color: $background-secondary;
+}
+
+.contentContainer{
+  display: flex;
+}
+
+.messageBar{
+  @include mt(2)
 }

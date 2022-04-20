@@ -1,38 +1,38 @@
 @import "functions";
 @import "mixins";
+@import "sass-spacing/mixins.scss";
 
-.fl-grid {
+$columns: 12;
+
+.flGrid {
+  @include m(0);
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   margin: auto px-to-rem(8);
 
   // > 1366 pixel
   column-gap: px-to-rem(32);
-  row-gap: px-to-rem(32);
+  //row-gap: px-to-rem(32);
 
   // < 1366 pixel
   @media screen and (max-width: 1366px) {
     column-gap: px-to-rem(24);
-    row-gap: px-to-rem(24);
+    //row-gap: px-to-rem(24);
   }
   // <= 640 pixel
   @media screen and (max-width: 640px) {
     column-gap: px-to-rem(16);
-    row-gap: px-to-rem(16);
+    //row-gap: px-to-rem(16);
   }
 }
 
-.fl-span12 {
-  @include flUI-span(12);
-}
+  @for $i from 1 through $columns {
+    .flSpan#{$i} {
+      @include flUI-span($i);
+    }
+  }
 
-.fl-span4 {
-  @include flUI-span(4);
-}
 
-.fl-span8 {
-  @include flUI-span(8);
-}
 
 .fl-span6c {
   @include flUI-span(6, 4, 1);

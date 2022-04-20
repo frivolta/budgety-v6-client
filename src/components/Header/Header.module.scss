@@ -6,8 +6,10 @@
 .container {
   @include flex();
   @include align-items(center);
-  display: flex;
   @include justify-content(space-between);
+  display: flex;
+  @include ml(3);
+  @include mr(3);
 }
 
 .login-buttons {

@@ -1,0 +1,7 @@
+@import "src/styling/scss/vars";
+@import "sass-spacing/mixins.scss";
+
+.container{
+  @include p(3);
+  height: 100vh;
+}
